@@ -20,25 +20,13 @@
 <button onclick="generateUsername()">Generate Username</button>
 <p id="username"></p>
 <script>
-  var adjectives = ['Happy', 'Funny', 'Clever', 'Brave', 'Silly', 'Lucky'];
-  var nouns = ['Cat', 'Dog', 'Bird', 'Tiger', 'Elephant', 'Lion'];
-  
   function generateUsername() {
-    if(adjectives.length === 0 || nouns.length === 0) {
-      alert("No more unique usernames can be generated.");
-      return;
+    var length = 10; // Độ dài của username (có thể điều chỉnh)
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // Bảng ký tự cho username
+    var username = '';
+    for (var i = 0; i < length; i++) {
+      username += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    
-    var randomAdjIndex = Math.floor(Math.random() * adjectives.length);
-    var randomNounIndex = Math.floor(Math.random() * nouns.length);
-    
-    var adjective = adjectives[randomAdjIndex];
-    var noun = nouns[randomNounIndex];
-    
-    adjectives.splice(randomAdjIndex, 1); // Loại bỏ từ đã chọn khỏi danh sách
-    nouns.splice(randomNounIndex, 1); // Loại bỏ từ đã chọn khỏi danh sách
-    
-    var username = adjective + noun;
     document.getElementById('username').textContent = username;
   }
 </script>
