@@ -21,11 +21,12 @@
 <p id="username"></p>
 <script>
   function generateUsername() {
-    var length = 10; // Độ dài của username (có thể điều chỉnh)
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // Bảng ký tự cho username
+    var length = 8; // Độ dài của username
     var username = '';
+    var characters = 'abcdefghijklmnopqrstuvwxyz'; // Chỉ bao gồm các chữ cái thường
+    var charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
-      username += characters.charAt(Math.floor(Math.random() * characters.length));
+      username += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     document.getElementById('username').textContent = username;
   }
