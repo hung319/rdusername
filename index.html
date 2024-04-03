@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Random Username Generator</title>
+<title>Easy-to-Say Username Generator</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -16,17 +16,15 @@
 </style>
 </head>
 <body>
-<h1>Random Username Generator</h1>
+<h1>Easy-to-Say Username Generator</h1>
 <button onclick="generateUsername()">Generate Username</button>
 <p id="username"></p>
 <script>
   function generateUsername() {
-    var length = 8; // Độ dài của username
+    var syllables = ['ba', 'be', 'bi', 'bo', 'bu', 'da', 'de', 'di', 'do', 'du', 'fa', 'fe', 'fi', 'fo', 'fu', 'ga', 'ge', 'gi', 'go', 'gu', 'ha', 'he', 'hi', 'ho', 'hu', 'ja', 'je', 'ji', 'jo', 'ju', 'ka', 'ke', 'ki', 'ko', 'ku', 'la', 'le', 'li', 'lo', 'lu', 'ma', 'me', 'mi', 'mo', 'mu', 'na', 'ne', 'ni', 'no', 'nu', 'pa', 'pe', 'pi', 'po', 'pu', 'ra', 're', 'ri', 'ro', 'ru', 'sa', 'se', 'si', 'so', 'su', 'ta', 'te', 'ti', 'to', 'tu', 'va', 've', 'vi', 'vo', 'vu', 'wa', 'we', 'wi', 'wo', 'wu', 'ya', 'ye', 'yi', 'yo', 'yu', 'za', 'ze', 'zi', 'zo', 'zu'];
     var username = '';
-    var characters = 'abcdefghijklmnopqrstuvwxyz'; // Chỉ bao gồm các chữ cái thường
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      username += characters.charAt(Math.floor(Math.random() * charactersLength));
+    for (var i = 0; i < 4; i++) { // Chọn 4 âm tiết để tạo username
+      username += syllables[Math.floor(Math.random() * syllables.length)];
     }
     document.getElementById('username').textContent = username;
   }
