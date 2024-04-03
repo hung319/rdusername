@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Username Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #username {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<h1>Random Username Generator</h1>
+<button onclick="generateUsername()">Generate Username</button>
+<p id="username"></p>
+<script>
+  var adjectives = ['Happy', 'Funny', 'Clever', 'Brave', 'Silly', 'Lucky'];
+  var nouns = ['Cat', 'Dog', 'Bird', 'Tiger', 'Elephant', 'Lion'];
+  
+  function generateUsername() {
+    if(adjectives.length === 0 || nouns.length === 0) {
+      alert("No more unique usernames can be generated.");
+      return;
+    }
+    
+    var randomAdjIndex = Math.floor(Math.random() * adjectives.length);
+    var randomNounIndex = Math.floor(Math.random() * nouns.length);
+    
+    var adjective = adjectives[randomAdjIndex];
+    var noun = nouns[randomNounIndex];
+    
+    adjectives.splice(randomAdjIndex, 1); // Loại bỏ từ đã chọn khỏi danh sách
+    nouns.splice(randomNounIndex, 1); // Loại bỏ từ đã chọn khỏi danh sách
+    
+    var username = adjective + noun;
+    document.getElementById('username').textContent = username;
+  }
+</script>
+</body>
+</html>
