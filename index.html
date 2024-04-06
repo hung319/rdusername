@@ -21,9 +21,9 @@ body {
     outline: none; /* Loại bỏ viền khi tương tác */
 }
 
-button.generate {
-    background-color: #444; /* Màu nền nút Generate */
-    color: #fff; /* Màu chữ nút Generate */
+button {
+    background-color: #444; /* Màu nền nút */
+    color: #fff; /* Màu chữ nút */
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -31,21 +31,8 @@ button.generate {
     border-radius: 50%; /* Đặt viền thành hình tròn */
 }
 
-button.generate:hover {
-    background-color: #666; /* Màu nền nút Generate khi rê chuột qua */
-}
-
-button.copy {
-    background-color: #444; /* Màu nền nút Copy */
-    color: #fff; /* Màu chữ nút Copy */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button.copy:hover {
-    background-color: #666; /* Màu nền nút Copy khi rê chuột qua */
+button:hover {
+    background-color: #666; /* Màu nền nút khi rê chuột qua */
 }
 
 input[type="text"] {
@@ -55,19 +42,13 @@ input[type="text"] {
     padding: 10px;
     font-size: 16px;
     width: 200px;
-    display: inline-block; /* Hiển thị ô nhập liệu cùng dòng với nút */
-    vertical-align: middle; /* Căn giữa theo chiều dọc */
 }
 </style>
 </head>
 <body onload="generateUsername()">
 <h1>Easy-to-Say Username Generator</h1>
-<div>
-    <input type="text" id="username" readonly>
-    <button class="copy" onclick="copyUsername()">Copy</button>
-</div>
-<button class="generate" onclick="generateUsername()">Generate Username</button>
-
+<button onclick="generateUsername()">Generate Username</button>
+<input type="text" id="username" onclick="copyUsername()" readonly>
 <script>
   function generateUsername() {
     var characters = 'abcdefghijklmnopqrstuvwxyz'; // Chỉ sử dụng chữ cái
