@@ -17,6 +17,8 @@ body {
     font-size: 24px;
     margin-top: 20px;
     cursor: pointer;
+    border: none; /* Loại bỏ khung viền */
+    outline: none; /* Loại bỏ viền khi tương tác */
 }
 
 button {
@@ -32,7 +34,7 @@ button:hover {
     background-color: #666; /* Màu nền nút khi rê chuột qua */
 }
 
-#usernameDisplay {
+input[type="text"] {
     background-color: #444; /* Màu nền input */
     color: #fff; /* Màu chữ input */
     border: none; /* Loại bỏ khung viền */
@@ -45,7 +47,7 @@ button:hover {
 <body onload="generateUsername()">
 <h1>Easy-to-Say Username Generator</h1>
 <button onclick="generateUsername()">Generate Username</button>
-<div id="usernameDisplay" onclick="copyUsername()"></div>
+<input type="text" id="username" onclick="copyUsername()" readonly>
 <script>
   function generateUsername() {
     var characters = 'abcdefghijklmnopqrstuvwxyz'; // Chỉ sử dụng chữ cái
@@ -53,17 +55,13 @@ button:hover {
     for (var i = 0; i < 8; i++) { // Tạo username với 8 kí tự ngẫu nhiên
       username += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    document.getElementById('usernameDisplay').innerText = username;
+    document.getElementById('username').value = username;
   }
 
   function copyUsername() {
-    var usernameDisplay = document.getElementById('usernameDisplay');
-    var tempInput = document.createElement('input');
-    tempInput.value = usernameDisplay.innerText;
-    document.body.appendChild(tempInput);
-    tempInput.select();
+    var usernameInput = document.getElementById('username');
+    usernameInput.select();
     document.execCommand('copy');
-    document.body.removeChild(tempInput);
   }
 </script>
 </body>
