@@ -12,13 +12,15 @@
   #username {
     font-size: 24px;
     margin-top: 20px;
+    cursor: pointer; /* Thêm con trỏ chỉ vào tên */
   }
 </style>
 </head>
-<body onload="generateUsername()"> <!-- Gọi hàm generateUsername() khi trang được load -->
+<body onload="generateUsername()">
 <h1>Easy-to-Say Username Generator</h1>
 <button onclick="generateUsername()">Generate Username</button>
-<p id="username"></p>
+<!-- Sử dụng thẻ input để chứa username để dễ dàng sao chép -->
+<input type="text" id="username" onclick="copyUsername()" readonly>
 <script>
   function generateUsername() {
     var syllables = ['ba', 'be', 'bi', 'bo', 'bu', 'da', 'de', 'di', 'do', 'du', 'fa', 'fe', 'fi', 'fo', 'fu', 'ga', 'ge', 'gi', 'go', 'gu', 'ha', 'he', 'hi', 'ho', 'hu', 'ja', 'je', 'ji', 'jo', 'ju', 'ka', 'ke', 'ki', 'ko', 'ku', 'la', 'le', 'li', 'lo', 'lu', 'ma', 'me', 'mi', 'mo', 'mu', 'na', 'ne', 'ni', 'no', 'nu', 'pa', 'pe', 'pi', 'po', 'pu', 'ra', 're', 'ri', 'ro', 'ru', 'sa', 'se', 'si', 'so', 'su', 'ta', 'te', 'ti', 'to', 'tu', 'va', 've', 'vi', 'vo', 'vu', 'wa', 'we', 'wi', 'wo', 'wu', 'ya', 'ye', 'yi', 'yo', 'yu', 'za', 'ze', 'zi', 'zo', 'zu'];
@@ -26,7 +28,14 @@
     for (var i = 0; i < 4; i++) { // Chọn 4 âm tiết để tạo username
       username += syllables[Math.floor(Math.random() * syllables.length)];
     }
-    document.getElementById('username').textContent = username;
+    document.getElementById('username').value = username; // Sử dụng value thay vì textContent
+  }
+
+  function copyUsername() {
+    var usernameInput = document.getElementById('username');
+    usernameInput.select(); // Chọn nội dung của input
+    document.execCommand('copy'); // Sao chép nội dung đã chọn
+    alert('Username copied to clipboard: ' + usernameInput.value); // Thông báo đã sao chép
   }
 </script>
 </body>
