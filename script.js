@@ -3,7 +3,7 @@ document.getElementById('generate-btn').addEventListener('click', generateUserna
 document.getElementById('username-display').addEventListener('click', copyToClipboard);
 
 function generateUsername() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const characters = 'abcdefghijklmnopqrstuvwxyz';
     let username = '';
     
     for (let i = 0; i < 8; i++) {
