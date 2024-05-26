@@ -17,9 +17,7 @@ function generateUsername() {
 function copyToClipboard() {
     const username = document.getElementById('username-display').innerText;
     if (username) {
-        navigator.clipboard.writeText(username).then(() => {
-            alert('Username copied to clipboard: ' + username);
-        }).catch(err => {
+        navigator.clipboard.writeText(username).catch(err => {
             console.error('Failed to copy text: ', err);
         });
     }
