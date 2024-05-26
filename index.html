@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Username Generator</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Username Generator</h1>
-        <button id="generate-btn">Generate Username</button>
-        <p id="username-display" title="Click to copy"></p>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>  }
-</script>
-</body>
-</html>
+document.addEventListener('DOMContentLoaded', generateUsername);
+document.getElementById('generate-btn').addEventListener('click', generateUsername);
+document.getElementById('username-display').addEventListener('click', copyToClipboard);
+
+function generateUsername() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let username = '';
+    
+    for (let i = 0; i < 8; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        username += characters[randomIndex];
+    }
+    
+    document.getElementById('username-display').innerText = username;
+}
+
+function copyToClipboard() {
+    const username = document.getElementById('username-display').innerText;
+    if (username) {
+        navigator.clipboard.writeText(username).then(() => {
+            alert('Username copied to clipboard: ' + username);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+        });
+    }
+}
