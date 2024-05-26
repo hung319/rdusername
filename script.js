@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', generateUsername);
 document.getElementById('generate-btn').addEventListener('click', generateUsername);
 document.getElementById('username-display').addEventListener('click', copyToClipboard);
 
