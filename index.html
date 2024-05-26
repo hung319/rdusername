@@ -1,68 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Easy-to-Say Username Generator</title>
-<style>
-/* CSS styles */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #222; /* Màu nền đen */
-    color: #fff; /* Màu chữ trắng */
-}
-
-#username {
-    font-size: 24px;
-    margin-top: 20px;
-    cursor: pointer;
-    border: none; /* Loại bỏ khung viền */
-    outline: none; /* Loại bỏ viền khi tương tác */
-}
-
-button {
-    background-color: #444; /* Màu nền nút */
-    color: #fff; /* Màu chữ nút */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #666; /* Màu nền nút khi rê chuột qua */
-}
-
-input[type="text"] {
-    background-color: #444; /* Màu nền input */
-    color: #fff; /* Màu chữ input */
-    border: none; /* Loại bỏ khung viền */
-    padding: 10px;
-    font-size: 16px;
-    width: 200px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Generator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="generateUsername()">
-<h1>Easy-to-Say Username Generator</h1>
-<button onclick="generateUsername()">Generate Username</button>
-<input type="text" id="username" onclick="copyUsername()" readonly>
-<script>
-  function generateUsername() {
-    var characters = 'abcdefghijklmnopqrstuvwxyz'; // Chỉ sử dụng chữ cái
-    var username = '';
-    for (var i = 0; i < 8; i++) { // Tạo username với 8 kí tự ngẫu nhiên
-      username += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    document.getElementById('username').value = username;
-  }
-
-  function copyUsername() {
-    var usernameInput = document.getElementById('username');
-    usernameInput.select();
-    document.execCommand('copy');
-  }
+<body>
+    <div class="container">
+        <h1>Username Generator</h1>
+        <button id="generate-btn">Generate Username</button>
+        <p id="username-display" title="Click to copy"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>  }
 </script>
 </body>
 </html>
