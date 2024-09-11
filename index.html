@@ -1,17 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Username Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Tạo Tên Người Dùng Ngẫu Nhiên (8 Ký Tự, Dễ Đọc)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #username-display {
+            font-size: 24px;
+            margin-top: 20px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        #username-display:hover {
+            background-color: #e0e0e0;
+        }
+        #copy-message {
+            color: green;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Username Generator</h1>
-        <button id="generate-btn">Generate Username</button>
-        <p id="username-display" title="Click to copy"></p>
+        <h1>Tạo Tên Người Dùng Ngẫu Nhiên</h1>
+        <button id="generate-btn">Tạo Tên Người Dùng</button>
+        <p id="username-display"></p>
+        <p id="copy-message">Đã sao chép vào clipboard!</p>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', generateUsername);
+        document.getElementById('generate-btn').addEventListener('click', generateUsername);
+        document.getElementById('username-display').addEventListener('click', copyToClipboard);
+
+        const consonants = 'bcdfghjklmnpqrstvwxyz';
+        const vowels = 'aeiou';
+
+        function generateUsername() {
+            let username = '';
+            let isVowel = false;
+
+            for (let i = 0; i < 8; i++) {
+                if (isVowel) {
+                    username += vowels[Math.floor(Math.random() * vowels.length)];
+                } else {
+                    username += consonants[Math.floor(Math.random() * consonants.length)];
+                }
+                isVowel = !isVowel;
+            }
+
+            // Đảm bảo tên bắt đầu bằng phụ âm
+            if (vowels.includes(username[0])) {
+                username = consonants[Math.floor(Math.random() * consonants.length)] + username.slice(1, 8);
+            }
+
+            document.getElementById('username-display').innerText = username;
+        }
+
+        function copyToClipboard() {
+            const username = document.getElementById('username-display').innerText;
+            if (username) {
+                const textArea = document.createElement("textarea");
+                textArea.value = username;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopyMessage();
+                } catch (err) {
+                    console.error('Không thể sao chép văn bản: ', err);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showCopyMessage() {
+            const copyMessage = document.getElementById('copy-message');
+            copyMessage.style.display = 'block';
+            setTimeout(() => {
+                copyMessage.style.display = 'none';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
